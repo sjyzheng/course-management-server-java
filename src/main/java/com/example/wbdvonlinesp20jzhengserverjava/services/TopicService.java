@@ -26,6 +26,8 @@ public class TopicService {
         Topic topicToUpdate = topicRepository.findTopicById(tid);
         topicToUpdate.setTitle(updatedTopic.getTitle());
         topicToUpdate.setDescription(updatedTopic.getDescription());
+
+        topicRepository.save(topicToUpdate);
         return 1;
     }
 
