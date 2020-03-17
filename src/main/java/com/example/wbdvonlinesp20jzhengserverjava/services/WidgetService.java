@@ -53,4 +53,15 @@ public class WidgetService {
         return 1;
     }
 
+    public int moveWidget(Integer wFid, Integer wTid) {
+        Widget widgetFrom = widgetRepository.findWidgetById(wFid);
+        Widget widgetTo = widgetRepository.findWidgetById(wTid);
+
+        int temOrder = widgetTo.getWidgetOrder();
+        widgetTo.setWidgetOrder(widgetFrom.getWidgetOrder());
+        widgetFrom.setWidgetOrder(temOrder);
+
+        return 1;
+    }
+
 }

@@ -45,4 +45,8 @@ public class WidgetController {
         return widgetService.deleteWidget(wid);
     }
 
+    @PutMapping("/api/widgets/{widgetFromId}/{widgetToId}")
+    public int moveWidget(@PathVariable("widgetFromId") Integer wFid, @PathVariable("widgetToId") Integer wTid) {
+        return widgetService.moveWidget(wFid, wTid);
+    }
 }
