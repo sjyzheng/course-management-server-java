@@ -1,5 +1,7 @@
 package com.example.wbdvonlinesp20jzhengserverjava.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -12,10 +14,13 @@ public class Topic {
 
     private String title = "New Topic";
     private String description;
-    private String lessonId;
 
     @OneToMany(mappedBy = "topic", orphanRemoval = true)
     private List<Widget> widgets;
+
+    @ManyToOne
+    @JsonIgnore
+    private Lesson lesson;
 
     public Integer getId() {
         return id;
@@ -49,12 +54,11 @@ public class Topic {
         this.description = description;
     }
 
-    public String getLessonId() {
-        return lessonId;
+    public Lesson getLesson() {
+        return lesson;
     }
 
-    public void setLessonId(String lessonId) {
-        this.lessonId = lessonId;
+    public void setLesson(Lesson lesson) {
+        this.lesson = lesson;
     }
-
 }
