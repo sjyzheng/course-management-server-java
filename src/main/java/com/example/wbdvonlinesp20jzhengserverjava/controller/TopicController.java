@@ -15,16 +15,16 @@ public class TopicController {
     TopicService topicService;
 
     @PostMapping("/api/lessons/{lessonId}/topics")
-    public Topic createTopic(@PathVariable("lessonId") String lid, @RequestBody Topic topic) {
+    public Topic createTopic(@PathVariable("lessonId") Integer lid, @RequestBody Topic topic) {
         return topicService.createTopic(lid, topic);
     }
 
     @GetMapping("/api/lessons/{lessonId}/topics")
-    public List<Topic> findTopicsForLessons(@PathVariable("lessonId") String lid) {
+    public List<Topic> findTopicsForLesson(@PathVariable("lessonId") Integer lid) {
         return topicService.findTopicsForLesson(lid);
     }
 
-    @PutMapping("api/topics/{topicId}")
+    @PutMapping("/api/topics/{topicId}")
     public int updateTopic(@PathVariable("topicId") Integer tid,
                            @RequestBody Topic topic) {
         return topicService.updateTopic(tid, topic);

@@ -1,6 +1,8 @@
 package com.example.wbdvonlinesp20jzhengserverjava.services;
 
+import com.example.wbdvonlinesp20jzhengserverjava.models.Lesson;
 import com.example.wbdvonlinesp20jzhengserverjava.models.Topic;
+import com.example.wbdvonlinesp20jzhengserverjava.repositories.LessonRepository;
 import com.example.wbdvonlinesp20jzhengserverjava.repositories.TopicRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,12 +15,16 @@ public class TopicService {
     @Autowired
     TopicRepository topicRepository;
 
-    public Topic createTopic(String lid, Topic newTopic) {
-        newTopic.setLessonId(lid);
+    @Autowired
+    LessonRepository lessonRepository;
+
+    public Topic createTopic(Integer lid, Topic newTopic) {
+        Lesson lesson = lessonRepository.findById(lid).get();
+        newTopic.setLesson(lesson);
         return topicRepository.save(newTopic);
     }
 
-    public List<Topic> findTopicsForLesson(String lid) {
+    public List<Topic> findTopicsForLesson(Integer lid) {
         return topicRepository.findTopicsForLesson(lid);
     }
 
@@ -43,6 +49,5 @@ public class TopicService {
     public Topic findTopicById(Integer tid) {
         return topicRepository.findTopicById(tid);
     }
-
 
 }
