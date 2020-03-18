@@ -56,14 +56,10 @@ public class WidgetService {
     public int moveWidget(Integer wFid, Integer wTid) {
         Widget widgetFrom = widgetRepository.findWidgetById(wFid);
         Widget widgetTo = widgetRepository.findWidgetById(wTid);
-
-        System.out.println(widgetFrom.getWidgetOrder()+ " "+ widgetTo.getWidgetOrder());
-
+        
         int temOrder = widgetTo.getWidgetOrder();
         widgetTo.setWidgetOrder(widgetFrom.getWidgetOrder());
         widgetFrom.setWidgetOrder(temOrder);
-        System.out.println(wFid+ " "+ wTid);
-        System.out.println(widgetFrom.getWidgetOrder()+ " "+ widgetTo.getWidgetOrder());
 
         widgetRepository.save(widgetFrom);
         widgetRepository.save(widgetTo);
