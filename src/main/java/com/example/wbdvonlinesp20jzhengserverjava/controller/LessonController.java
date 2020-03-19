@@ -16,7 +16,7 @@ public class LessonController {
     LessonService lessonService;
 
     @PostMapping("/api/modules/{moduleId}/lessons")
-    public Lesson createTopic(@PathVariable("moduleId") Integer mid, @RequestBody Lesson lesson) {
+    public Lesson createLesson(@PathVariable("moduleId") Integer mid, @RequestBody Lesson lesson) {
         return lessonService.createLesson(mid, lesson);
     }
 
